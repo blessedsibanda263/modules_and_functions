@@ -2,6 +2,8 @@
 
 -export([cost/1, total/1]).
 
+-import(mylists, [sum/1, map/2]).
+
 cost(oranges) ->
   5;
 cost(newspaper) ->
@@ -13,7 +15,5 @@ cost(pears) ->
 cost(milk) ->
   7.
 
-total([{What, N} | T]) ->
-  cost(What) * N + total(T);
-total([]) ->
-  0.
+total(L) ->
+  sum(map(fun({What, N}) -> cost(What) * N end, L)).
